@@ -1,6 +1,7 @@
 #ifndef __maze_h__
 #define __maze_h__
 
+#include <stdlib.h>
 #include "Cell.h"
 #include "dbg.h"
 

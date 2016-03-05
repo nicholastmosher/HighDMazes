@@ -30,16 +30,16 @@ int Maze::getNumDimensions() {
 }
 
 Cell* Maze::getCell(int *coordinates) {
-	
+
 	int index = 0;
 	int index_multiplier = 1;
 	for (int i = (getNumDimensions() - 1); i >= 0; --i) {
 		index += coordinates[i] * index_multiplier;
-		index_multiplier *= dimensionSizes[i];
+		index_multiplier *= dimensionSize[i];
 	}
-	
+
 	check(index_multiplier != 0, "Index multiplier was zero.");
-	
+
 	//cells[index] dereferences cell pointer, must add & to return pointer.
 	return &(cells[index]);
 error:
@@ -50,20 +50,20 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
 	Cell* c = getCell(coordinates);
 	int numWalls = 0;
 	for(int i = 0; i < getNumDimensions(); ++i) {
-		if (c.isWall(i, 0)) {
+		if (c->isWall(i, 0)) {
 			++numWalls;
 		}
-		if (c.isWall(i, 1)) {
+		if (c->isWall(i, 1)) {
 			++numWalls;
 		}
 	}
-	
+
 	Neighbors *out = (Neighbors *) malloc(sizeof(Neighbors));
 	out->numDimensions = getNumDimensions();
 	out->numNeighbors = numWalls;
-	out->coordinates = (int *) malloc(sizeof(int) * out->numDimensions * out->numNeighbors)
+	out->coordinates = (int *) malloc(sizeof(int) * out->numDimensions * out->numNeighbors);
 }
 
 void Maze::generatePath() {
-	
+
 }

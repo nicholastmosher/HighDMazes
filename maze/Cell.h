@@ -1,7 +1,7 @@
 #ifndef __cell_h__
 #define __cell_h__
 
-#include "Maze.h"
+#include <stdlib.h>
 
 /**
  * Represents a single room in a maze.
