@@ -13,7 +13,7 @@ Maze::Maze (int numDimensions, int* dimensionSizes) {
     
     //Copy each dimension size into the local array.
     for(int i = 0; i < numDimensions; ++i) {
-        dimensionSize[i] = dimensionSize[i];
+        dimensionSize[i] = dimensionSizes[i];
         numCells *= dimensionSize[i];
     }
     
@@ -37,17 +37,22 @@ Cell* Maze::getCell(int *coordinates) {
         index_multiplier *= dimensionSizes[i];
     }
     
+    check(index_multiplier != 0, "Index multiplier was zero.");
+    
     //cells[index] dereferences cell pointer, must add & to return pointer.
     return &(cells[index]);
+error:
+    return NULL;
 }
 
 Neighbors* Maze::getNeighbors(int *coordinates) {
-    const int maxWalls = 2 * getNumDimensions();
-    
     Cell* c = getCell(coordinates);
     int numWalls = 0;
-    for (int i = 0; i < maxWalls; ++i) {
-        if (c.walls[i]) {
+    for (int i = 0; i < getNumDimensions(); ++i) {
+        if (c.isWall(i, 0)) {
+            ++numWalls;
+        }
+        if (c.isWall(i, 1)) {
             ++numWalls;
         }
     }
@@ -55,9 +60,11 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
     Neighbors* out = (Neighbors *) malloc(sizeof(Neighbors));
     out->numDimensions = getNumDimensions();
     out->numNeighbors = numWalls;
-    //TODO populate coordinates
+    out->coordinates = (int *) malloc(sizeof(int) * out->numDimensions * out->numNeighbors)
+    
 }
 
 void Maze::generatePath() {
+    
     
 }

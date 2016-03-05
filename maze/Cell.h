@@ -59,6 +59,6 @@ public:
      * @param side The side (true/false corresponds to front/back) to check.
      */
     bool isWall (int dimension, bool side);
-}
+};
 
 #endif //__cell_h__

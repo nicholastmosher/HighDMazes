@@ -5,7 +5,7 @@ Cell::Cell (int numDimensions) {
     walls = (bool *) malloc(sizeof(bool) * maxWalls);
     
     for(int i = 0; i < maxWalls; ++i) {
-        Cell::walls[i] = 1;
+        walls[i] = 1;
     }
 }
 

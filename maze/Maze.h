@@ -99,6 +99,6 @@ public:
      * of coordinates of those neighbors.
      */
     Neighbors *getNeighbors(int *coordinates);
-}
+};
 
 #endif //__maze_h__
