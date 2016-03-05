@@ -1,3 +1,5 @@
+#include "Cell.h"
+
 typedef struct _neighbors {
     
     int numNeighbors;
@@ -61,7 +63,7 @@ public:
      *  D0 D1 D2 D3 ...DN
      *  [0][0][0][0]...[0]
      */
-    Cell getCell(int *coordinates);
+    Cell *getCell(int *coordinates);
     
     /**
      * Returns a struct of neighbors for the cell located at the given
