@@ -2,7 +2,7 @@
 
 Cell::Cell (int numDimensions) {
     const int maxWalls = 2 * numDimensions;
-    Cell::walls = malloc(sizeof(bool) * maxWalls);
+    Cell::walls = (bool *) malloc(sizeof(bool) * maxWalls);
     
     for(int i = 0; i < maxWalls; ++i) {
         Cell::walls[i] = 1;
@@ -20,5 +20,5 @@ void Cell::deleteWall (int wallIndex) {
 
 bool Cell::isWall (int dimension, bool side) {
     int index = 2 * dimension + side;
-    return Cell->walls[index];
+    return Cell::walls[index];
 }

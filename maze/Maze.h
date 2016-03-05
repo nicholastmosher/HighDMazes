@@ -1,11 +1,11 @@
 #include "Cell.h"
 
-typedef struct _neighbors {
+typedef struct Neighbors {
     
     int numNeighbors;
     int numDimensions;
-    int coordinates[numNeighbors][numDimensions];
-} Neighbors;
+    int *coordinates;
+};
 
 /**
  * The master data record for a single maze.

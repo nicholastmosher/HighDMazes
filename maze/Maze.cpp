@@ -2,30 +2,30 @@
 
 Maze::Maze (int numDimensions, int* dimensionSizes) {
     Maze::numDimensions = numDimensions;
-    Maze::dimensionSizes = malloc(sizeof(int) * this.numDimensions);
+    Maze::dimensionSize = (int *) malloc(sizeof(int) * Maze::numDimensions);
     int numCells = 1;
     
-    for (int i = 0; i < this.numDimensions; ++i) {
-        Maze::dimensionSizes[i] = dimensionSize[i];
+    for (int i = 0; i < Maze::numDimensions; ++i) {
+        Maze::dimensionSize[i] = dimensionSize[i];
         numCells *= dimensionSize[i];
     }
     
-    Maze::cells = malloc(sizeof(Cell) * numCells);
+    Maze::cells = (Cell *) malloc(sizeof(Cell) * numCells);
     for (int i = 0; i < numCells; ++i) {
-        cells[i] = new Cell(Maze::numDimensions);
+        cells[i] = *(new Cell(Maze::numDimensions));
     }
 }
 
-int getNumDimensions() {
+int Maze::getNumDimensions() {
     return Maze::numDimensions;
 }
 
-Cell *getCell(int *coordinates) {
+Cell *Maze::getCell(int *coordinates) {
     Cell *out;
     return out;
 }
 
-Neighbors *getNeighbors(int *coordinates) {
+Neighbors *Maze::getNeighbors(int *coordinates) {
     Neighbors *out;
     return out;
 }
