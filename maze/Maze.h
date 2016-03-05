@@ -1,10 +1,26 @@
-#include "Cell.h"
+#ifndef __maze_h__
+#define __maze_h__
 
-typedef struct _neighbors {
+#include "Cell.h"
+#include "dbg.h"
+
+/**
+ * A struct that allows cells to represent their neighboring cells using
+ * Z-coordinates. The coordinates array "width" is denoted by numDimensions,
+ * and the number of rows or "height" is denoted by numNeighbors.
+ * 
+ * Representation of "coordinates" for a D-dimension maze with N neighbors:
+ * 
+ *  Neighbor 0:     {0+, 0-, 1+, 1-, ..., D+, D-,
+ *  Neighbor 1:      0+, 0-, 1+, 1-, ..., D+, D-,
+ *  ...
+ *  Neighbor N:      0+, 0-, 1+, 1-, ..., D+, D-}
+ */
+typedef struct Neighbors {
     
     int numNeighbors;
     int numDimensions;
-    int coordinates[numNeighbors][numDimensions];
+    int *coordinates;
 } Neighbors;
 
 /**
@@ -35,6 +51,12 @@ private:
      *  dimensionSize[N];
      */
     Cell *cells;
+    
+    /**
+     * Creates an arrangement of "walls" between adjacent cells in the maze.
+     * This will overwrite existing maze configurations.
+     */
+    void generatePath();
 
 public:
 
@@ -78,3 +100,5 @@ public:
      */
     Neighbors *getNeighbors(int *coordinates);
 }
+
+#endif //__maze_h__
