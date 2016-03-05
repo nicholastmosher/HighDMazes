@@ -1,0 +1,10 @@
+UnrealProject/Binaries
+UnrealProject/DerivedDataCache
+UnrealProject/Intermediate
+UnrealProject/Saved
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.xcodeproj
+*.xcworkspace
