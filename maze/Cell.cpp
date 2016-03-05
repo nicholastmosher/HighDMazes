@@ -4,7 +4,7 @@ Cell::Cell (int numDimensions) {
     const int maxWalls = 2 * numDimensions;
     Cell::walls = malloc(sizeof(bool) * maxWalls);
     
-    for(int i = 0; i < maxWalls; ++i) {
+    for (int i = 0; i < maxWalls; ++i) {
         Cell::walls[i] = 1;
     }
 }
