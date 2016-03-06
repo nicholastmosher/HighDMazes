@@ -81,20 +81,14 @@ error:
 	return;
 }
 
-cellList* getCells(cellList* in, int offset, int size) {
+cellList* getCells(Cell* in, int offset, int size) {
 	cellList *out = new cellList(size);
 
-	for (int i = 0; i < size; ++i) {
-		out->push_back((*in)[offset + i]);
+	for(int i = 0; i < size; ++i) {
+		out->push_back(in[offset + i]);
 	}
 
 	return out;
-}
-
-void generatePath(Maze *maze) {
-
-	int dimensions = maze->getNumDimensions();
-	int *dimensionSizes = maze->getDimensionSizes();
 }
 
 //isAdjacent(Cell *cell);
@@ -109,7 +103,7 @@ void knockWalls(std::vector<cellList> superset) {
 				srand(time(NULL));
 				double threshold = (sqrt(superset.size()) / superset.size());
 				double rn = (rand() % 10) / 10; // generate between 0.1 to 1.0
-				
+
 				//TODO if random never triggers, have 1 join as a failsafe
 				if (rn > threshold) {
 					int dimensionOfWall = 0;
