@@ -21,8 +21,8 @@ Maze::Maze(int numDimensions, int* dimensionSizes) {
 	int* dimensionMultipliers = (int *) malloc(sizeof(int) * numDimensions);
 	int currentMultiplier = 1;
 	for (int i = numDimensions; i >= 0; --i) {
-		dimensionMultipliers[i] = currentMultiplier;
-		currentMultiplier *= dimensionSizes[i];
+		dimensionMultipliers[i - 1] = currentMultiplier;
+		currentMultiplier *= dimensionSizes[i - 1];
 	}
 
 	//Initialize all cells to default.
@@ -32,9 +32,9 @@ Maze::Maze(int numDimensions, int* dimensionSizes) {
 		int* cellCoordinates = (int *) malloc(sizeof(int) * numDimensions);
 		
 		for (int j = 0; j < numDimensions; ++j) {
-			cellCoordinates[j] = (currCount / dimensionMultipliers[j]);
+			cellCoordinates[j] = currCount / dimensionMultipliers[j];
 			currCount = currCount % dimensionMultipliers[j];
-			printf("%d,", cellCoordinates[j]);
+			printf("%d, ", cellCoordinates[j]);
 		}
 		
 		printf("\n");
