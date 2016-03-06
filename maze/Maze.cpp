@@ -62,22 +62,34 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
 	out->numDimensions = getNumDimensions();
 	out->numNeighbors = numDimensions * 2 - numWalls;
 	out->coordinates = (int *) malloc(sizeof(int) * out->numDimensions * out->numNeighbors);
-	//TODO neighbor cells are where walls don't exist
+	
+	int neighborsCount = 0;
+	
 	for (int i = 0; i < out->numDimensions; ++i) {
-		int* currentCoord = (int* )malloc(sizeof(coordinates));
-		for (int i = 0; i < getNumDimensions(); ++i) {
-			currentCoord[i] = coordinates[i];
-		}
-		if (!c->isWall(i,0))) {
-			currentCoord[i]++;
-			
+		int currZIndex = neighborsCount * getNumDimensions();
+		
+		if (!c->isWall(i,0)) {
+			for (int j = 0; j < getNumDimensions(); ++j) {
+				out->coordinates[currentZIndex + j] = coordinates[j];
+				out->coordinates[currentZIndex + i]--;
+			}
+			++neighborsCount;
 		}
 		
-		if 
+		if (!c->isWall(i,1)) {
+			for (int j = 0; j < getNumDimensions(); ++j) {
+				out->coordinates[currentZIndex + j] = coordinates[j];
+				out->coordinates[currentZIndex + i]++;
+			}
+			++neighborsCount;
+		}
 		
-		free(currentCoord);
+		free(tempCoord);
 	}
 	
+	check(out->numNeighbors == neighborsCount, "Expected nbrCount != actualNbrCount");
+	
+	return out;
 	//TODO add neighbor cells' coordinates to array in order
 }
 
