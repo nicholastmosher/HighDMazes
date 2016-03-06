@@ -5,12 +5,18 @@
 	"Description": "",
 	"Modules": [
 		{
-			"Name": "BrickHack",
+			"Name": "UnrealProject",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
 				"Engine"
 			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "CodeEditor",
+			"Enabled": true
 		}
 	]
 }

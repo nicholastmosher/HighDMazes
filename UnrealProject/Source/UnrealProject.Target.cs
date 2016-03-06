@@ -3,11 +3,11 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class BrickHackEditorTarget : TargetRules
+public class UnrealProjectTarget : TargetRules
 {
-	public BrickHackEditorTarget(TargetInfo Target)
+	public UnrealProjectTarget(TargetInfo Target)
 	{
-		Type = TargetType.Editor;
+		Type = TargetType.Game;
 	}
 
 	//
@@ -20,6 +20,6 @@ public class BrickHackEditorTarget : TargetRules
 		ref List<string> OutExtraModuleNames
 		)
 	{
-		OutExtraModuleNames.AddRange( new string[] { "BrickHack" } );
+		OutExtraModuleNames.AddRange( new string[] { "UnrealProject" } );
 	}
 }

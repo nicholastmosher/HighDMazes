@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class BrickHack : ModuleRules
+public class UnrealProject : ModuleRules
 {
-	public BrickHack(TargetInfo Target)
+	public UnrealProject(TargetInfo Target)
 	{
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 

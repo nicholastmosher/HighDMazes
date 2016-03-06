@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BrickHack.h"
+#include "UnrealProject.h"
 #include "MazeActor.h"
 
 
@@ -9,9 +9,6 @@ AMazeActor::AMazeActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	// Create the Maze
-	maze = new Maze(dimensions, dimensionSizes);
 
 }
 
@@ -29,14 +26,19 @@ void AMazeActor::Tick( float DeltaTime )
 
 }
 
+// Generates the maze
+void AMazeActor::generateMaze(TArray<int32> dimensions) {
+	maze = new Maze(dimensions.Num(), &dimensions[0]);
+}
+
 // The number of dimensions in the maze
 int32 AMazeActor::getNumDimensions() {
-	return maze.getNumDimensions();
+	return maze->getNumDimensions();
 }
 
 // Get the neighbors of the cell at the given coordinates
 TArray<int32> AMazeActor::getNeighbors(TArray<int32> coordinates) {
-	return NULL;
+	return *new TArray<int32>();
 }
 
 // Get if the cell at the given coordinates has a wall on the given side
