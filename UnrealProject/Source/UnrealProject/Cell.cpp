@@ -22,3 +22,7 @@ bool Cell::isWall (int dimension, bool side) {
 	int index = 2 * dimension + side;
 	return walls[index];
 }
+
+bool *Cell::getWalls() {
+	return walls;
+}
