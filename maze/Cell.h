@@ -85,7 +85,16 @@ public:
 
 	void setEllerSet(int set);
 	int getEllerSet();
+	
+	/**
+	 * Gets the cell's coordinates in array form
+	 */
 	int* getCoordinates();
+	
+	/**
+	 * Gets the cell's walls in boolean array form, in the format stated in
+	 * data member declaration
+	 */
 	bool* getWalls();
 };
 
