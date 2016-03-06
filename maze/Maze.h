@@ -104,4 +104,5 @@ public:
 	Neighbors *getNeighbors(int *coordinates);
 };
 
+#include "test/Test.h"
 #endif //__maze_h__

@@ -35,6 +35,12 @@ private:
 	 */
 	Cell *neighbors;
 
+	/**
+	 * Represents the set that this cell belongs to in the context of Eller's
+	 * algorithm.
+	 */
+	int ellerSet;
+
 public:
 
 	/**
@@ -75,6 +81,9 @@ public:
 	 * @param side The side (true/false corresponds to front/back) to check.
 	 */
 	bool isWall (int dimension, bool side);
+
+	void setEllerSet(int set);
+	int getEllerSet();
 };
 
 #endif //__cell_h__

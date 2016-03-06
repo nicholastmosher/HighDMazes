@@ -1,8 +1,11 @@
 cc = $(shell which 'g++')
 
 all:
-	$(cc) -o main Main.cpp Maze.cpp Cell.cpp
+	$(cc) -o main Main.cpp Maze.cpp Cell.cpp Generation.cpp test/Test.cpp
 
-tests:
-	$(cc) -o test Main.cpp Maze.cpp Cell.cpp
-	valgrind ./test
+tests: clean
+	$(cc) -o tests Main.cpp Maze.cpp Cell.cpp Generation.cpp test/Test.cpp
+	valgrind ./tests
+
+clean:
+	rm main tests
