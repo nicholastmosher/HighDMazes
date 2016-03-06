@@ -27,7 +27,7 @@ void joinSets(cellList *persistentSet, cellList *oldSet);
  * Returns a set of cells starting from an offset away from the base pointer,
  * stretching across 'size' number of cells.
  */
-cellList *getCells(cellList *in, int offset, int size);
+cellList *getCells(Cell *in, int offset, int size);
 
 /**
  * Iterates over two cells at a time from the cellList, and for every pair
@@ -35,5 +35,7 @@ cellList *getCells(cellList *in, int offset, int size);
  * they don't share a set.
  */
 void randomlyConnect(cellList *cells, int dimension);
+
+void newRow(
 
 #endif //__generation_h__
