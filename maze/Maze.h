@@ -46,15 +46,15 @@ private:
 	 * A pointer to an array of cells. The number of cells in an N-dimensional
 	 * maze is equal to:
 	 *
-	 *	dimensionSize[0]   *
-	 *	dimensionSize[1]   *
+	 *	dimensionSize[0] *
+	 *	dimensionSize[1] *
 	 *	...
 	 *	dimensionSize[N];
 	 */
 	Cell *cells;
 
 	/**
-	 * Creates an arrangement of "walls" between adjacent cells in the maze.
+	 * Creates a path between adjacent cells in the maze.
 	 * This will overwrite existing maze configurations.
 	 */
 	void generatePath();

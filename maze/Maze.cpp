@@ -1,11 +1,10 @@
-#include <stdlib.h>
 #include "Maze.h"
 
 /**
  * Constructs a new maze with the given number of dimensions, with
  * the specified size for each dimension.
  */
-Maze::Maze (int numDimensions, int* dimensionSizes) {
+Maze::Maze(int numDimensions, int* dimensionSizes) {
 
 	//Initialize the number of dimensions and the size of each dimension.
 	numDimensions = numDimensions;
@@ -29,7 +28,7 @@ int Maze::getNumDimensions() {
 	return numDimensions;
 }
 
-Cell* Maze::getCell(int *coordinates) {
+Cell *Maze::getCell(int *coordinates) {
 
 	int index = 0;
 	int index_multiplier = 1;
@@ -47,13 +46,13 @@ error:
 }
 
 Neighbors* Maze::getNeighbors(int *coordinates) {
-	Cell* c = getCell(coordinates);
+	Cell *c = getCell(coordinates);
 	int numWalls = 0;
 	for(int i = 0; i < getNumDimensions(); ++i) {
-		if (c->isWall(i, 0)) {
+		if(c->isWall(i, 0)) {
 			++numWalls;
 		}
-		if (c->isWall(i, 1)) {
+		if(c->isWall(i, 1)) {
 			++numWalls;
 		}
 	}
@@ -62,12 +61,12 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
 	out->numDimensions = getNumDimensions();
 	out->numNeighbors = numDimensions * 2 - numWalls;
 	out->coordinates = (int *) malloc(sizeof(int) * out->numDimensions * out->numNeighbors);
-	
+
 	int neighborsCount = 0;
-	
+
 	for (int i = 0; i < out->numDimensions; ++i) {
 		int currentZIndex = neighborsCount * getNumDimensions();
-		
+
 		if (!c->isWall(i,0)) {
 			for (int j = 0; j < getNumDimensions(); ++j) {
 				out->coordinates[currentZIndex + j] = coordinates[j];
@@ -75,7 +74,7 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
 			}
 			++neighborsCount;
 		}
-		
+
 		if (!c->isWall(i,1)) {
 			for (int j = 0; j < getNumDimensions(); ++j) {
 				out->coordinates[currentZIndex + j] = coordinates[j];
@@ -83,14 +82,13 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
 			}
 			++neighborsCount;
 		}
-		
-		free(tempCoord);
 	}
-	
-	check(out->numNeighbors == neighborsCount, "Expected nbrCount != actualNbrCount");
-	
-	return out;
 
+	check(out->numNeighbors == neighborsCount, "Expected nbrCount != actualNbrCount");
+
+	return out;
+error:
+	return NULL;
 }
 
 void Maze::generatePath() {

@@ -3,8 +3,6 @@
 
 #include "../Maze.h"
 
-void test() {
-    
-}
+void test();
 
 #endif //__testmaze_h__
