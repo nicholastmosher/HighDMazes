@@ -81,7 +81,8 @@ public:
 	 */
 	Maze(int numDimensions, int *dimensionSizes);
 	~Maze();
-
+	
+	void hackInit();
 
 	/**
 	 * Returns the number of dimensions in this maze.

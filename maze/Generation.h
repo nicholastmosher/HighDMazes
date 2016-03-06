@@ -34,6 +34,6 @@ cellList *getCells(Cell *in, int offset, int size);
  * of cells adjacent in the given dimension, they are randomly connected if
  * they don't share a set.
  */
-void randomlyConnect(cellList *cells, int dimension, int off);
+void randomlyConnect(cellList *cells, int dimension, int *dimensionSize);
 
 #endif //__generation_h__

@@ -93,7 +93,7 @@ cellList* getCells(Cell* in, int offset, int size) {
 	return out;
 }
 
-void randomlyConnect(cellList *cells, int dimension, int* dimensionSize, int off) {
+void randomlyConnect(cellList *cells, int dimension, int* dimensionSize) {
 	if (dimension == 1) {
 		for (int i = 0; i < ((cells->size()) - 1); ++i) {
 			srand(time(NULL));

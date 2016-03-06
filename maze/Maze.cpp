@@ -52,7 +52,7 @@ Maze::~Maze() {
 void Maze::hackInit() {
 	
 	numDimensions = 4;
-	dimensionSize = malloc(sizeof(int) * numDimensions);
+	dimensionSize = (int *) malloc(sizeof(int) * numDimensions);
 	numCells = 256;
 	
 	for(int i = 0; i < numDimensions; i++) {
@@ -67,17 +67,17 @@ void Maze::hackInit() {
 	for (int i = 0; i < 64; ++i) {
 		list = getCells(cells, i * dimensionSize[0], dimensionSize[0]);
 		//Randomly connect cells.
-		randomlyConnect(list, 1);
+		randomlyConnect(list, 1, dimensionSize);
 	}
 	
 	for (int i = 0; i < 16; ++i) {
 		list = getCells(cells, i * dimensionSize[0] * dimensionSize[1], dimensionSize[0] * dimensionSize[1] * 2);
-		randomlyConnect(list, 2);
+		randomlyConnect(list, 2, dimensionSize);
 	}
 	
 	for (int i = 0; i < 4; ++i) {
 		list = getCells(cells, i * dimensionSize[0] * dimensionSize[1] * dimensionSize[2], dimensionSize[0] * dimensionSize[1] * dimensionSize[2] * 2);
-		randomlyConnect(list, 3);
+		randomlyConnect(list, 3, dimensionSize);
 	}
 	
 	//list = getCells(cells, i * dimensionSize[0] * dimensionSize[1] * dimensionSize[2], dimensionSize[0] * dimensionSize[1] * dimensionSize[2] * 2);
