@@ -1,0 +1,13 @@
+.vs
+Build
+Debug
+Intermediate
+Saved
+Binaries
+!*.dll
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.xcodeproj
+*.xcworkspace
