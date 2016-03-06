@@ -66,7 +66,7 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
 	int neighborsCount = 0;
 	
 	for (int i = 0; i < out->numDimensions; ++i) {
-		int currZIndex = neighborsCount * getNumDimensions();
+		int currentZIndex = neighborsCount * getNumDimensions();
 		
 		if (!c->isWall(i,0)) {
 			for (int j = 0; j < getNumDimensions(); ++j) {
