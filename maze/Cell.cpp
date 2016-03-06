@@ -1,12 +1,14 @@
 #include "Cell.h"
 
-Cell::Cell (int numDimensions) {
+Cell::Cell (int numDimensions, int* coords) {
 	const int maxWalls = 2 * numDimensions;
 	walls = (bool *) malloc(sizeof(bool) * maxWalls);
 	
 	for(int i = 0; i < maxWalls; ++i) {
 		walls[i] = 1;
 	}
+	
+	coordinates = coords;
 }
 
 void Cell::createWall (int wallIndex) {

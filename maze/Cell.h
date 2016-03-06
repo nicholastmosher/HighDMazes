@@ -11,6 +11,16 @@ class Cell {
 private:
 
 	/**
+	 * Indicates how many dimensions this cell has.
+	 */
+	int numDimensions;
+
+	/**
+	 * The coordinates of this cell in the maze.
+	 */
+	int *coordinates;
+
+	/**
 	 * Determines whether there are walls on each end of each dimension.
 	 * Since in each dimension there are two directions to travel (+/-),
 	 * the number of possible walls in each cell is (numDimensions * 2).
@@ -20,12 +30,18 @@ private:
 	 */
 	bool *walls;
 
+	/**
+	 * Holds pointers to all adjacent cells.
+	 */
+	Cell *neighbors;
+
 public:
 
 	/**
-	 * Constructs a cell with the given number of dimensions.
+	 * Constructs a cell with the given number of dimensions at the given
+	 * coordinates.
 	 */
-	Cell (int numDimensions);
+	Cell (int numDims, int *coords);
 
 	/**
 	 * Puts a wall at the given location. The locations are incremental over
