@@ -1,7 +1,7 @@
 #ifndef __generation_h__
 #define __generation_h__
 
-#include "Maze.h"
+#include "Cell.h"
 #include <vector>
 
 typedef std::vector<Cell*> cellList;
@@ -34,8 +34,6 @@ cellList *getCells(Cell *in, int offset, int size);
  * of cells adjacent in the given dimension, they are randomly connected if
  * they don't share a set.
  */
-void randomlyConnect(cellList *cells, int dimension);
-
-void newRow(
+void randomlyConnect(cellList *cells, int dimension, int off);
 
 #endif //__generation_h__

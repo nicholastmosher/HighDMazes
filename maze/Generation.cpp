@@ -1,6 +1,8 @@
 #include "Generation.h"
 #include <time.h>
 #include <math.h>
+#include "Cell.h"
+#include "dbg.h"
 
 int getSharedSetNumber(cellList *cells) {
 
@@ -82,28 +84,26 @@ error:
 }
 
 cellList* getCells(Cell* in, int offset, int size) {
-	cellList *out = new cellList(size);
+	cellList* out = new cellList(size);
 
 	for(int i = 0; i < size; ++i) {
-		out->push_back(in[offset + i]);
+		out->push_back((in+offset+i));
 	}
 
 	return out;
 }
 
-//isAdjacent(Cell *cell);
-<<<<<<< HEAD
-void randomlyConnect(cellList *cells, int dimension, int* dimensionSize) {
+void randomlyConnect(cellList *cells, int dimension, int* dimensionSize, int off) {
 	if (dimension == 1) {
-		for (int i = 0; i < cellList.size() - 1; ++i) {
+		for (int i = 0; i < ((cells->size()) - 1); ++i) {
 			srand(time(NULL));
-			double rn = rand % 5;
+			double rn = rand() % 5;
 			if (rn > 3) {
-				cell* leftCell = cells[i];
-				cell* rightCell = cells[i + 1];
+				Cell* leftCell = (*cells)[i];
+				Cell* rightCell = (*cells)[i + 1];
 				
-				leftCell->deleteWall(dimension);
-				rightCell->deleteWall(dimension - 1);
+				leftCell->deleteWall(dimension * 2 - 1);
+				rightCell->deleteWall(dimension * 2 - 2);
 				rightCell->setEllerSet(leftCell->getEllerSet());
 			}
 		}
@@ -115,45 +115,15 @@ void randomlyConnect(cellList *cells, int dimension, int* dimensionSize) {
 			offset *= dimensionSize[i];
 		}
 		for (int i = 0; i < offset; ++i) {
-			if (cellList[i].isAdjacent(cellList[i + offset]) {
-				cell* leftCell = cells[i];
-				cell* rightCell = cells[i + offset];
+			srand(time(NULL));
+			double rn = rand() % 5;
+			if ((*cells)[i]->isAdjacent((*cells)[i + offset]) && rn > 3) {
+				Cell* leftCell = (*cells)[i];
+				Cell* rightCell = (*cells)[i + offset];
 				
 				leftCell->deleteWall(dimension * 2 - 1);
 				rightCell->deleteWall(dimension * 2 - 2);
-=======
-void knockWalls(std::vector<cellList> superset) {
-	int numSets = superset.size();
-	int i = 0;
-	int j = 0;
-	while (i < numSets) {
-		while (j < numSets) {
-			if (superset[i][superset[i].size() - 1]->isAdjacent(superset[j][0])) {
-				//TODO get cells to knock down walls
-				srand(time(NULL));
-				double threshold = (sqrt(superset.size()) / superset.size());
-				double rn = (rand() % 10) / 10; // generate between 0.1 to 1.0
-
-				//TODO if random never triggers, have 1 join as a failsafe
-				if (rn > threshold) {
-					int dimensionOfWall = 0;
-					while (dimensionOfWall < superset[j][0]->getNumDimensions()) {
-						int cell1Coordinate = superset[i][superset[i].size() - 1]->getCoordinates()[dimensionOfWall];
-						int cell2Coordinate = superset[j][0]->getCoordinates()[dimensionOfWall];
-						if (cell1Coordinate - cell2Coordinate != 0) {
-							superset[i][superset[i].size() - 1]->deleteWall(2*dimensionOfWall + 1);
-							superset[j][0]->deleteWall(2*dimensionOfWall);
-							break;
-						}
-						++dimensionOfWall;
-					}
-					joinSets(&superset[i], &superset[j]);
-					superset.erase(superset.begin() + j);
-				}
-				else {
-					++j;
-				}
->>>>>>> 4fafc5f0b16a0f97ad5c5796fa97d0d53da50e30
+				rightCell->setEllerSet(leftCell->getEllerSet());
 			}
 		}
 	}

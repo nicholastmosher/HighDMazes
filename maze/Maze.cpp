@@ -1,13 +1,16 @@
 #include "Maze.h"
+#include "Generation.h"
 
 /**
  * Constructs a new maze with the given number of dimensions, with
  * the specified size for each dimension.
  */
 Maze::Maze(int numDimensions, int* dimensionSizes) {
+	
+	hackInit();
 
 	//Initialize the number of dimensions and the size of each dimension.
-	numDimensions = numDimensions;
+/*	numDimensions = numDimensions;
 	dimensionSize = (int *) malloc(sizeof(int) * numDimensions);
 	numCells = 1;
 
@@ -38,12 +41,46 @@ Maze::Maze(int numDimensions, int* dimensionSizes) {
 
 		cells[i] = *(new Cell(numDimensions, cellCoordinates));
 		cells[i].setEllerSet(i);
-	}
+	}*/
 }
 
 Maze::~Maze() {
 	free(cells);
 	free(dimensionSize);
+}
+
+void Maze::hackInit() {
+	
+	numDimensions = 4;
+	dimensionSize = malloc(sizeof(int) * numDimensions);
+	numCells = 256;
+	
+	for(int i = 0; i < numDimensions; i++) {
+		dimensionSize[i] = 4;
+	}
+	
+	cells = (Cell *) malloc(sizeof(Cell) * numCells);
+	
+	cellList *list;
+	
+	//Get first line of cells.
+	for (int i = 0; i < 64; ++i) {
+		list = getCells(cells, i * dimensionSize[0], dimensionSize[0]);
+		//Randomly connect cells.
+		randomlyConnect(list, 1);
+	}
+	
+	for (int i = 0; i < 16; ++i) {
+		list = getCells(cells, i * dimensionSize[0] * dimensionSize[1], dimensionSize[0] * dimensionSize[1] * 2);
+		randomlyConnect(list, 2);
+	}
+	
+	for (int i = 0; i < 4; ++i) {
+		list = getCells(cells, i * dimensionSize[0] * dimensionSize[1] * dimensionSize[2], dimensionSize[0] * dimensionSize[1] * dimensionSize[2] * 2);
+		randomlyConnect(list, 3);
+	}
+	
+	//list = getCells(cells, i * dimensionSize[0] * dimensionSize[1] * dimensionSize[2], dimensionSize[0] * dimensionSize[1] * dimensionSize[2] * 2);
 }
 
 int Maze::getNumDimensions() {
