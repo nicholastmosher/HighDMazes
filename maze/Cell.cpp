@@ -39,3 +39,7 @@ int Cell::getEllerSet() {
 int* Cell::getCoordinates() {
 	return coordinates;
 }
+
+bool* Cell::getWalls() {
+	return walls;
+}

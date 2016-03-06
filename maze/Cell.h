@@ -86,6 +86,7 @@ public:
 	void setEllerSet(int set);
 	int getEllerSet();
 	int* getCoordinates();
+	bool* getWalls();
 };
 
 #endif //__cell_h__
