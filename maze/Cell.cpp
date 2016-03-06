@@ -29,8 +29,21 @@ bool Cell::isWall (int dimension, bool side) {
 	return walls[index];
 }
 
-bool Cell::isAdjacentInDimension(Cell *cell, int dimension) {
+bool Cell::isAdjacent(Cell *cell) {
 
+	int i = 0, sum = 0, difference = 0;
+	for(i = 0; i < numDimensions; i++) {
+
+		//Find the absolute value of the difference in coordinates.
+		difference = (coordinates[i] - cell->getCoordinates()[i]);
+		difference = (difference > 0 ? difference : -difference);
+
+		//Add the difference to the running total.
+		sum += difference;
+	}
+
+	//If the summation was exactly 1, then the cell is adjacent.
+	return sum == 1;
 }
 
 void Cell::setEllerSet(int set) {

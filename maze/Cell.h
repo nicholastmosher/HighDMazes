@@ -84,10 +84,9 @@ public:
 	bool isWall (int dimension, bool side);
 
 	/**
-	 * Determines whether the cell at the given pointer is adjacent to this
-	 * one along the given dimension.
+	 * Determines whether the cell at the given pointer is adjacent to this one.
 	 */
-	bool isAdjacentInDimension(Cell *cell, int dimension);
+	bool isAdjacent(Cell *cell);
 
 	void setEllerSet(int set);
 	int getEllerSet();
