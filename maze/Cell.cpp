@@ -61,3 +61,7 @@ int* Cell::getCoordinates() {
 bool* Cell::getWalls() {
 	return walls;
 }
+
+int Cell::getNumDimensions() {
+	return numDimensions;
+}

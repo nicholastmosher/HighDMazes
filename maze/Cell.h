@@ -57,7 +57,7 @@ public:
 	 *
 	 * For a cell with N dimensions, the wall indexes are:
 	 *
-	 *	{0+, 0-, 1+, 1-, ..., N+, N-}
+	 *	{0-, 0+, 1-, 1+, ..., N-, N+}
 	 *	 0	 1	 2	 3		  2N  2N+1
 	 */
 	void createWall (int wallIndex);
@@ -101,6 +101,7 @@ public:
 	 * data member declaration
 	 */
 	bool* getWalls();
+	int getNumDimensions();
 };
 
 #endif //__cell_h__
