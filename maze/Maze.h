@@ -12,10 +12,10 @@
  *
  * Representation of "coordinates" for a D-dimension maze with N neighbors:
  *
- *	Neighbor 0:		{0+, 0-, 1+, 1-, ..., D+, D-,
- *	Neighbor 1:		 0+, 0-, 1+, 1-, ..., D+, D-,
+ *	Neighbor 0:		{0, 1, ..., D,
+ *	Neighbor 1:		 0, 1, ..., D,
  *	...
- *	Neighbor N:		 0+, 0-, 1+, 1-, ..., D+, D-}
+ *	Neighbor N:		 0, 1, ..., D}
  */
 typedef struct {
 

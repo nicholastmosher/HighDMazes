@@ -60,8 +60,25 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
 
 	Neighbors *out = (Neighbors *) malloc(sizeof(Neighbors));
 	out->numDimensions = getNumDimensions();
-	out->numNeighbors = numWalls;
+	out->numNeighbors = numDimensions * 2 - numWalls;
 	out->coordinates = (int *) malloc(sizeof(int) * out->numDimensions * out->numNeighbors);
+	//TODO neighbor cells are where walls don't exist
+	for (int i = 0; i < out->numDimensions; ++i) {
+		int* currentCoord = (int* )malloc(sizeof(coordinates));
+		for (int i = 0; i < getNumDimensions(); ++i) {
+			currentCoord[i] = coordinates[i];
+		}
+		if (!c->isWall(i,0))) {
+			currentCoord[i]++;
+			
+		}
+		
+		if 
+		
+		free(currentCoord);
+	}
+	
+	//TODO add neighbor cells' coordinates to array in order
 }
 
 void Maze::generatePath() {
