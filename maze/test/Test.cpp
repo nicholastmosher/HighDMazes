@@ -72,6 +72,70 @@ int test_getCellsWithSet() {
 
 	log_info("Testing getCellsWithSet().");
 
+	int dimensions = 3;
+	int coordinates[3] = {0,0,0};
+	cellList *cells = new cellList();
+	cellList *tempCells;
+	int numCells;
+	int i = 0;
+
+	Cell *c = new Cell(dimensions, coordinates);
+	c->setEllerSet(2);
+	cells->push_back(c);
+	check((numCells = ((tempCells = getCellsWithSet(cells, 2))->size())) == 1,
+				"Expected %d cells, got %d.", 1, numCells);
+	delete(tempCells);
+	check((numCells = ((tempCells = getCellsWithSet(cells, 3))->size())) == 0,
+				"Expected %d cells, got %d.", 0, numCells);
+	delete(tempCells);
+	check((numCells = ((tempCells = getCellsWithSet(cells, 0))->size())) == 0,
+				"Expected %d cells, got %d.", 0, numCells);
+	delete(tempCells);
+
+	coordinates[2] = 1;
+	c = new Cell(dimensions, coordinates);
+	c->setEllerSet(2);
+	cells->push_back(c);
+	check((numCells = ((tempCells = getCellsWithSet(cells, 2))->size())) == 2,
+				"Expected %d cells, got %d.", 2, numCells);
+	delete(tempCells);
+
+	coordinates[2] = 2;
+	c = new Cell(dimensions, coordinates);
+	c->setEllerSet(2);
+	cells->push_back(c);
+	check((numCells = ((tempCells = getCellsWithSet(cells, 2))->size())) == 3,
+				"Expected %d cells, got %d.", 3, numCells);
+	delete(tempCells);
+
+	coordinates[2] = 3;
+	c = new Cell(dimensions, coordinates);
+	c->setEllerSet(2);
+	cells->push_back(c);
+	check((numCells = ((tempCells = getCellsWithSet(cells, 2))->size())) == 4,
+				"Expected %d cells, got %d.", 4, numCells);
+	delete(tempCells);
+
+	coordinates[2] = 4;
+	c = new Cell(dimensions, coordinates);
+	c->setEllerSet(3);
+	cells->push_back(c);
+	check((numCells = ((tempCells = getCellsWithSet(cells, 2))->size())) == 4,
+				"Expected %d cells, got %d.", 4, numCells);
+	delete(tempCells);
+	check((numCells = ((tempCells = getCellsWithSet(cells, 3))->size())) == 1,
+				"Expected %d cells, got %d.", 1, numCells);
+	delete(tempCells);
+	check((numCells = ((tempCells = getCellsWithSet(cells, 0))->size())) == 0,
+				"Expected %d cells, got %d.", 0, numCells);
+	delete(tempCells);
+
+	//Free all of those cells.
+	for(i = 0; i < cells->size(); i++) {
+		delete((*cells)[i]);
+	}
+	delete(cells);
+
 	return 0;
 error:
 	return 1;

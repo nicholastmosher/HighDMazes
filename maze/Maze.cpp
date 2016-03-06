@@ -5,7 +5,7 @@
  * the specified size for each dimension.
  */
 Maze::Maze(int numDimensions, int* dimensionSizes) {
-	
+
 	//Initialize the number of dimensions and the size of each dimension.
 	numDimensions = numDimensions;
 	dimensionSize = (int *) malloc(sizeof(int) * numDimensions);
@@ -30,12 +30,12 @@ Maze::Maze(int numDimensions, int* dimensionSizes) {
 	for(int i = 0; i < numCells; ++i) {
 		int currCount = i;
 		int* cellCoordinates = (int *) malloc(sizeof(int) * numDimensions);
-		
+
 		for (int j = 0; j < numDimensions; ++j) {
 			cellCoordinates[j] = currCount / dimensionMultipliers[j];
 			currCount = currCount % dimensionMultipliers[j];
 		}
-		
+
 		cells[i] = *(new Cell(numDimensions, cellCoordinates));
 	}
 }
@@ -66,7 +66,7 @@ Cell *Maze::getCell(int *coordinates) {
 	//cells[index] dereferences cell pointer, must add & to return pointer.
 	return &(cells[index]);
 
-	
+
 error:
 	return NULL;
 }
