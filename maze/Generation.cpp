@@ -74,8 +74,14 @@ error:
 	return;
 }
 
-cellList *getCellsInDimensionByRow(Maze *maze, int dimension, int row) {
-
+cellList* getCells(cellList* in, int offset, int size) {
+	cellList *out = new cellList(size);
+	
+	for (int i = 0; i < size; ++i) {
+		out->push_back((*in)[offset + i]);
+	}
+	
+	return out;
 }
 
 void generatePath(Maze *maze) {
