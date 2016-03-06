@@ -77,6 +77,8 @@ public:
 	 */
 	int getNumDimensions();
 
+	int getDimensionSize(int dimension);
+
 	/**
 	 * Returns the cell located at the given coordinates. The format of the
 	 * coordinates for an N-dimensional maze is:

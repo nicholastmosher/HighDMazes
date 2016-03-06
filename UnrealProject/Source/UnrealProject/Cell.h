@@ -21,6 +21,8 @@ private:
 
 public:
 
+	bool *getWalls();
+
 	/**
 	 * Constructs a cell with the given number of dimensions.
 	 */

@@ -59,8 +59,13 @@ void joinSets(cellList *persistentSet, cellList *oldSet) {
 
 	int i = 0;
 
-	int setNum = getSharedSetNumber(persistentSet);
-	check(setNum != -1, "Cells in persistent set don't share a set number.");
+	int persistNum = getSharedSetNumber(persistentSet);
+	int oldNum;
+	int setNum;
+	check(persistNum != -1, "Cells in persistent set don't share a set number.");
+	oldNum = getSharedSetNumber(oldSet);
+	check(oldNum != -1, "Cells in old set don't share a set number.");
+	setNum = (persistNum < oldNum ? persistNum : oldNum);
 
 	//For each element in the oldSet, change ellerSet and move to persistentSet.
 	for(i = 0; i < oldSet->size(); i++) {
@@ -69,7 +74,7 @@ void joinSets(cellList *persistentSet, cellList *oldSet) {
 	}
 
 	//Free the old set.
-	free(oldSet);
+	delete(oldSet);
 error:
 	return;
 }
