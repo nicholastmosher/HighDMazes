@@ -90,7 +90,7 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
 	check(out->numNeighbors == neighborsCount, "Expected nbrCount != actualNbrCount");
 	
 	return out;
-	//TODO add neighbor cells' coordinates to array in order
+
 }
 
 void Maze::generatePath() {
