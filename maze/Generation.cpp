@@ -1,4 +1,6 @@
 #include "Generation.h"
+#include <time.h>
+#include <math.h>
 
 int getSharedSetNumber(cellList *cells) {
 
@@ -93,4 +95,29 @@ void generatePath(Maze *maze) {
 
 	int dimensions = maze->getNumDimensions();
 	int *dimensionSizes = maze->getDimensionSizes();
+}
+
+//isAdjacent(Cell *cell);
+void knockWalls(std::vector<cellList> superset) {
+	int numSets = superset.size();
+	int i = 0;
+	int j = 0;
+	while (i < numSets) {
+		while (j < numSets) {
+			if (superset[i][superset[i].size() - 1]->isAdjacent(superset[j][0])) {
+				srand(time(NULL));
+				double threshold = (sqrt(superset.size()) / superset.size());
+				double rn = (rand() % 10 + 1) / 10; // generate between 0.1 to 1.0
+				if (rn > threshold) {
+					joinSets(&superset[i], &superset[j]);
+					superset.erase(superset.begin() + j);
+				}
+				else {
+					++j;
+				}
+			}
+		}
+		++i;
+		j = 0;
+	}
 }
