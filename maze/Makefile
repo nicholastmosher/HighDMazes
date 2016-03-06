@@ -5,7 +5,7 @@ all:
 
 tests: clean
 	$(cc) -o tests Main.cpp Maze.cpp Cell.cpp Generation.cpp test/Test.cpp
-	valgrind --leak-check=full ./tests
+	valgrind --leak-check=full --show-leak-kinds=all ./tests
 
 clean:
 	rm -f main tests

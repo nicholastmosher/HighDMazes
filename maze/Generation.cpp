@@ -21,7 +21,7 @@ int getSharedSetNumber(cellList *cells) {
 		//If s does not match setNum, then cell i is an outlier.
 		if(s != setNum) {
 			debug("Cell %d in set %d is an outlier; not in set %d.", i, s, setNum);
-			return 0;
+			return -1;
 		}
 	}
 
@@ -57,6 +57,21 @@ cellList *getCellsWithSet(cellList *cells, int setNumber) {
 
 void joinSets(cellList *persistentSet, cellList *oldSet) {
 
+	int i = 0;
+
+	int setNum = getSharedSetNumber(persistentSet);
+	check(setNum != -1, "Cells in persistent set don't share a set number.");
+
+	//For each element in the oldSet, change ellerSet and move to persistentSet.
+	for(i = 0; i < oldSet->size(); i++) {
+		(*oldSet)[i]->setEllerSet(setNum);
+		persistentSet->push_back((*oldSet)[i]);
+	}
+
+	//Free the old set.
+	free(oldSet);
+error:
+	return;
 }
 
 cellList *getCellsInDimensionByRow(Maze *maze, int dimension, int row) {
