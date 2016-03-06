@@ -112,12 +112,10 @@ void knockWalls(std::vector<cellList> superset) {
 				
 				//TODO if random never triggers, have 1 join as a failsafe
 				if (rn > threshold) {
-					joinSets(&superset[i], &superset[j]);
-					superset.erase(superset.begin() + j);
 					int dimensionOfWall = 0;
-					int cell1Coordinate = superset[i][superset[i].size() - 1]->getCoordinates()[dimensionOfWall];
-					int cell2Coordinate = superset[j][0]->getCoordinates()[dimensionOfWall];
 					while (dimensionOfWall < superset[j][0]->getNumDimensions()) {
+						int cell1Coordinate = superset[i][superset[i].size() - 1]->getCoordinates()[dimensionOfWall];
+						int cell2Coordinate = superset[j][0]->getCoordinates()[dimensionOfWall];
 						if (cell1Coordinate - cell2Coordinate != 0) {
 							superset[i][superset[i].size() - 1]->deleteWall(2*dimensionOfWall + 1);
 							superset[j][0]->deleteWall(2*dimensionOfWall);
@@ -125,6 +123,8 @@ void knockWalls(std::vector<cellList> superset) {
 						}
 						++dimensionOfWall;
 					}
+					joinSets(&superset[i], &superset[j]);
+					superset.erase(superset.begin() + j);
 				}
 				else {
 					++j;
