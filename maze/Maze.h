@@ -3,6 +3,8 @@
 
 #include <stdlib.h>
 #include "Cell.h"
+#define DOLOG
+#define DEBUG
 #include "dbg.h"
 
 /**

@@ -5,7 +5,7 @@
  * the specified size for each dimension.
  */
 Maze::Maze(int numDimensions, int* dimensionSizes) {
-
+	
 	//Initialize the number of dimensions and the size of each dimension.
 	numDimensions = numDimensions;
 	dimensionSize = (int *) malloc(sizeof(int) * numDimensions);
@@ -13,14 +13,33 @@ Maze::Maze(int numDimensions, int* dimensionSizes) {
 
 	//Copy each dimension size into the local array.
 	for(int i = 0; i < numDimensions; ++i) {
-		dimensionSize[i] = dimensionSize[i];
+		dimensionSize[i] = dimensionSizes[i];
 		numCells *= dimensionSize[i];
+	}
+
+	//TODO construct coordinates via polynomial vector
+	int* dimensionMultipliers = (int *) malloc(sizeof(int) * numDimensions);
+	int currentMultiplier = 1;
+	for (int i = numDimensions; i >= 0; --i) {
+		dimensionMultipliers[i] = currentMultiplier;
+		currentMultiplier *= dimensionSizes[i];
 	}
 
 	//Initialize all cells to default.
 	cells = (Cell *) malloc(sizeof(Cell) * numCells);
 	for(int i = 0; i < numCells; ++i) {
-		cells[i] = *(new Cell(numDimensions));
+		int currCount = i;
+		int* cellCoordinates = (int *) malloc(sizeof(int) * numDimensions);
+		
+		for (int j = 0; j < numDimensions; ++j) {
+			cellCoordinates[j] = (currCount / dimensionMultipliers[j]);
+			currCount = currCount % dimensionMultipliers[j];
+			printf("%d,", cellCoordinates[j]);
+		}
+		
+		printf("\n");
+		
+		cells[i] = *(new Cell(numDimensions, cellCoordinates));
 	}
 }
 
@@ -41,6 +60,8 @@ Cell *Maze::getCell(int *coordinates) {
 
 	//cells[index] dereferences cell pointer, must add & to return pointer.
 	return &(cells[index]);
+
+	
 error:
 	return NULL;
 }
@@ -89,8 +110,4 @@ Neighbors* Maze::getNeighbors(int *coordinates) {
 	return out;
 error:
 	return NULL;
-}
-
-void Maze::generatePath() {
-
 }
