@@ -8,14 +8,14 @@
 Maze::Maze(int numDimensions, int* dimensionSizes) {
 
 	//Initialize the number of dimensions and the size of each dimension.
-	numDimensions = numDimensions;
+	Maze::numDimensions = numDimensions;
 	dimensionSize = (int *) malloc(sizeof(int) * numDimensions);
 	int numCells = 1;
 
 	//Copy each dimension size into the local array.
 	for(int i = 0; i < numDimensions; ++i) {
-		dimensionSize[i] = dimensionSize[i];
-		numCells *= dimensionSize[i];
+		dimensionSize[i] = dimensionSizes[i];
+		numCells *= dimensionSizes[i];
 	}
 
 	//Initialize all cells to default.
@@ -27,6 +27,10 @@ Maze::Maze(int numDimensions, int* dimensionSizes) {
 
 int Maze::getNumDimensions() {
 	return numDimensions;
+}
+
+int Maze::getDimensionSize(int dimension) {
+	return dimensionSize[dimension];
 }
 
 Cell *Maze::getCell(int *coordinates) {

@@ -7,6 +7,17 @@
 #include "Cell.h"
 #include "MazeActor.generated.h"
 
+USTRUCT(BlueprintType)
+struct FCoordinate
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(BlueprintReadWrite)
+	TArray<int32> coords;
+
+	FCoordinate(){}
+};
+
 UCLASS()
 class UNREALPROJECT_API AMazeActor : public AActor
 {
@@ -32,11 +43,11 @@ public:
 
 	// Get the neighbors of the cell at the given coordinates
 	UFUNCTION(BlueprintCallable, Category = "Maze")
-		TArray<int32> getNeighbors(TArray<int32> coordinates);
+		TArray<FCoordinate> getNeighbors(FCoordinate coordinates, int32 xAxis, int32 yAxis, int32 radius);
 
 	// Get if the cell at the given coordinates has a wall on the given side
 	UFUNCTION(BlueprintCallable, Category = "Maze")
-		bool isWall(TArray<int32> coordinates, int32 dimension, bool side);
+		TArray<bool> getWalls(FCoordinate coordinates);
 
 private:
 
