@@ -40,9 +40,17 @@ Maze::Maze(int numDimensions, int* dimensionSizes) {
 	}
 }
 
+
+Maze::~Maze() {
+	free(cells);
+	free(dimensionSize);
+}
+
+
 int Maze::getNumDimensions() {
 	return numDimensions;
 }
+
 
 Cell *Maze::getCell(int *coordinates) {
 

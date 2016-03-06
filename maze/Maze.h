@@ -75,6 +75,8 @@ public:
 	 *	Dimension N:	dimensionSizes[N];
 	 */
 	Maze(int numDimensions, int *dimensionSizes);
+	~Maze();
+
 
 	/**
 	 * Returns the number of dimensions in this maze.
