@@ -37,6 +37,7 @@ Maze::Maze(int numDimensions, int* dimensionSizes) {
 		}
 
 		cells[i] = *(new Cell(numDimensions, cellCoordinates));
+		cells[i].setEllerSet(i);
 	}
 }
 

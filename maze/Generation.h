@@ -24,11 +24,16 @@ cellList *getCellsWithSet(cellList *cells, int setNumber);
 void joinSets(cellList *persistentSet, cellList *oldSet);
 
 /**
- * Returns a pointer to a vector containing all cells in the given row of
- * the given dimension.
+ * Returns a set of cells starting from an offset away from the base pointer,
+ * stretching across 'size' number of cells.
  */
-cellList *getCellsInDimensionByRow(Maze *maze, int dimension, int row);
+cellList *getCells(cellList *in, int offset, int size);
 
-void generatePath(Maze *maze);
+/**
+ * Iterates over two cells at a time from the cellList, and for every pair
+ * of cells adjacent in the given dimension, they are randomly connected if
+ * they don't share a set.
+ */
+void randomlyConnect(cellList *cells, int dimension);
 
 #endif //__generation_h__
