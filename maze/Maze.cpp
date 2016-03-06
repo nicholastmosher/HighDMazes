@@ -34,10 +34,7 @@ Maze::Maze(int numDimensions, int* dimensionSizes) {
 		for (int j = 0; j < numDimensions; ++j) {
 			cellCoordinates[j] = currCount / dimensionMultipliers[j];
 			currCount = currCount % dimensionMultipliers[j];
-			printf("%d, ", cellCoordinates[j]);
 		}
-		
-		printf("\n");
 		
 		cells[i] = *(new Cell(numDimensions, cellCoordinates));
 	}

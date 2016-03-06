@@ -48,6 +48,7 @@ public:
 	 * coordinates.
 	 */
 	Cell (int numDims, int *coords);
+	~Cell();
 
 	/**
 	 * Puts a wall at the given location. The locations are incremental over
@@ -84,6 +85,7 @@ public:
 
 	void setEllerSet(int set);
 	int getEllerSet();
+	int* getCoordinates();
 };
 
 #endif //__cell_h__

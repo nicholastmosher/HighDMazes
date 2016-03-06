@@ -5,6 +5,7 @@
 #include "../Generation.h"
 
 int test_generation();
+int test_cellConstruction();
 int test();
 
 #endif //__testmaze_h__

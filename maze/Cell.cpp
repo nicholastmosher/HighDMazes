@@ -11,6 +11,10 @@ Cell::Cell (int numDimensions, int* coords) {
 	coordinates = coords;
 }
 
+Cell::~Cell() {
+	free(walls);
+}
+
 void Cell::createWall (int wallIndex) {
 	walls[wallIndex] = 1;
 }
@@ -30,4 +34,8 @@ void Cell::setEllerSet(int set) {
 
 int Cell::getEllerSet() {
 	return ellerSet;
+}
+
+int* Cell::getCoordinates() {
+	return coordinates;
 }
