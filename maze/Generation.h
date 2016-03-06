@@ -19,7 +19,7 @@ cellList *getCellsWithSet(cellList *cells, int setNumber);
 
 /**
  * Adds all elements of the oldSet to the persistetSet, while also reassigning
- * the internal set number of each cell in that set.
+ * the internal set number of each cell in that set. This deletes oldSet.
  */
 void joinSets(cellList *persistentSet, cellList *oldSet);
 

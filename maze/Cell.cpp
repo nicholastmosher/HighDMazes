@@ -1,13 +1,14 @@
 #include "Cell.h"
 
-Cell::Cell (int numDimensions, int* coords) {
+Cell::Cell (int numDims, int* coords) {
+	numDimensions = numDims;
 	const int maxWalls = 2 * numDimensions;
 	walls = (bool *) malloc(sizeof(bool) * maxWalls);
 
 	for(int i = 0; i < maxWalls; ++i) {
 		walls[i] = 1;
 	}
-	
+
 	coordinates = coords;
 }
 
@@ -26,6 +27,10 @@ void Cell::deleteWall (int wallIndex) {
 bool Cell::isWall (int dimension, bool side) {
 	int index = 2 * dimension + side;
 	return walls[index];
+}
+
+bool Cell::isAdjacentInDimension(Cell *cell, int dimension) {
+
 }
 
 void Cell::setEllerSet(int set) {

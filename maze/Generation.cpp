@@ -81,8 +81,12 @@ error:
 
 cellList *getCellsInDimensionByRow(Maze *maze, int dimension, int row) {
 
+	cellList *cells = new cellList();
+	int dimensionSize = maze->getNumDimensions();
 }
 
 void generatePath(Maze *maze) {
 
+	int dimensions = maze->getNumDimensions();
+	int *dimensionSizes = maze->getDimensionSizes();
 }

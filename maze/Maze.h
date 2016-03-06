@@ -45,6 +45,11 @@ private:
 	int *dimensionSize;
 
 	/**
+	 * Indicates the total number of cells in this Maze.
+	 */
+	int numCells;
+
+	/**
 	 * A pointer to an array of cells. The number of cells in an N-dimensional
 	 * maze is equal to:
 	 *
@@ -82,6 +87,11 @@ public:
 	 * Returns the number of dimensions in this maze.
 	 */
 	int getNumDimensions();
+
+	/**
+	 * Returns a pointer to the array of dimension sizes.
+	 */
+	int *getDimensionSizes();
 
 	/**
 	 * Returns the cell located at the given coordinates. The format of the

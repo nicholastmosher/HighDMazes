@@ -31,11 +31,6 @@ private:
 	bool *walls;
 
 	/**
-	 * Holds pointers to all adjacent cells.
-	 */
-	Cell *neighbors;
-
-	/**
 	 * Represents the set that this cell belongs to in the context of Eller's
 	 * algorithm.
 	 */
@@ -49,6 +44,11 @@ public:
 	 */
 	Cell (int numDims, int *coords);
 	~Cell();
+
+	/**
+	 * Identifies up to two neighbors of this cell along the given dimension.
+	 */
+	void identifyNeighbors(int dimension);
 
 	/**
 	 * Puts a wall at the given location. The locations are incremental over
@@ -82,6 +82,12 @@ public:
 	 * @param side The side (true/false corresponds to front/back) to check.
 	 */
 	bool isWall (int dimension, bool side);
+
+	/**
+	 * Determines whether the cell at the given pointer is adjacent to this
+	 * one along the given dimension.
+	 */
+	bool isAdjacentInDimension(Cell *cell, int dimension);
 
 	void setEllerSet(int set);
 	int getEllerSet();
